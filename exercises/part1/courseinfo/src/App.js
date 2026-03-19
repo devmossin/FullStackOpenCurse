@@ -1,55 +1,56 @@
-const Header = (props) => {
-  return (
-    <h1>{props.course}</h1>
-  )
-}
+const Header = ({ name }) => {
+  return <h1>{name}</h1>;
+};
 
-const Content = (props) => {
+const Content = ({ parts }) => {
   return (
-    <>
-      <p>
-        {props.part1} {props.exercises1}
-      </p>
-      <p>
-        {props.part2} {props.exercises2}
-      </p>
-      <p>
-        {props.part3} {props.exercises3}
-      </p>
-    </>
-  )
-}
+    <div>
+      <Part part={parts[0]} />
+      <Part part={parts[1]} />
+      <Part part={parts[2]} />
+    </div>
+  );
+};
 
-const Total = (props) => {
+const Part = ({ part }) => {
   return (
-    <p>Number of exercises {props.exercises1 + props.exercises2 + props.exercises3 }</p>
-  )
-}
+    <p>
+      {part.name} {part.exercises}
+    </p>
+  );
+};
 
+const Total = ({ parts }) => {
+  const total = parts[0].exercises + parts[1].exercises + parts[2].exercises;
+  return <p>Number of exercises {total}</p>;
+};
 
 const App = () => {
-  const course = 'Desenvolvimento de aplicação Half Stack'
-  const part1 = 'Fundamentos da biblioteca React'
-  const exercises1 = 10
-  const part2 = 'Usando props para passar dados'
-  const exercises2 = 7
-  const part3 = 'Estado de um componente'
-  const exercises3 = 14
+  const course = {
+    name: "Desenvolvimento de aplicação Half Stack",
+    parts: [
+      {
+        name: "Fundamentos da biblioteca React",
+        exercises: 10,
+      },
+      {
+        name: "Usando props para passar dados",
+        exercises: 7,
+      },
+      {
+        name: "Estado de um componente",
+        exercises: 14,
+      },
+    ],
+  };
 
   return (
     <div>
-      {/* HEADER */}
-      <Header course = {course}/>
-
-      {/*  CONTENT */}
-      <Content 
-        part1 = {part1} part2 = {part2} part3 = {part3}
-        exercises1 = {exercises1} exercises2 = {exercises2} exercises3 = {exercises3}
-      />
-      {/* TOTAL or FOOTER */}
-      <Total exercises1 = {exercises1} exercises2 = {exercises2} exercises3 = {exercises3}/>
+      <Header name={course.name} />
+      <Content parts={course.parts} />
+      <Total parts={course.parts} />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
