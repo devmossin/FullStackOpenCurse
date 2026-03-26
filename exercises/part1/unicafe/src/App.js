@@ -31,6 +31,7 @@ const Statistics = (props) => {
 
 const App = () => {
   // salve os cliques de cada botão em seu próprio estado
+  // testando a nova branch do trabalho
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
