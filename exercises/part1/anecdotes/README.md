@@ -1,13 +1,3 @@
-# Datas do curso
-
-17/03/2026 - Inicio do curso / part0
-19/03/2026 - Fim da part0
-20/03/2026 - Inicio da part1
-27/03/2026 - Fim da part1
-27/03/2026 - Inicio da part2
-
-Onde parei - part2 (a) Falta começar Refatorando Módulos
-
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
