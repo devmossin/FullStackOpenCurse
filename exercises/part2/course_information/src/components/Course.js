@@ -1,19 +1,25 @@
 const Course = ({ course }) => {
-    const totalExercises = course.parts.reduce((soma, part) => {
-        return soma + part.exercises;
-    }, 0)
-
     return (
         <div>
-            <h1>{course.name}</h1>
+            <h1>Web development curriculum</h1>
+            
+            {course.map(item => (
+                <div key={item.id}>
+                    <h1> {item.name} </h1>
+                    
+                    <div>
+                        {item.parts.map(part => (
+                            <p key={part.id}> {part.name} {part.exercises} </p>
+                        ))}
+                    </div>
 
-            <div>
-                {course.parts.map(part => 
-                <p key={part.id}>{part.name} {part.exercises}</p>
-                )}
-            </div>
-
-            <p><strong>total of {totalExercises} exercises</strong></p>
+                    <p>
+                        <strong>
+                            total of {item.parts.reduce((soma, part) => soma + part.exercises, 0)} exercises
+                        </strong>
+                    </p>
+                </div>
+            ))}
         </div>
     )
 }
