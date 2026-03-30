@@ -5,8 +5,9 @@
 20/03/2026 - Inicio da part1
 27/03/2026 - Fim da part1
 27/03/2026 - Inicio da part2
+30/03/2026 - Fim da part2 A
 
-Onde parei - part2 (a) Falta começar Refatorando Módulos
+Onde parei - começar part2 B
 
 This repository is where I will store and track my exercises from the Full Stack Open course by the University of Helsinki.
 
