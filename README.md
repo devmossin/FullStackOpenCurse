@@ -1,10 +1,15 @@
 # Datas do curso
 
 17/03/2026 - Inicio do curso / part0
+
 19/03/2026 - Fim da part0
+
 20/03/2026 - Inicio da part1
+
 27/03/2026 - Fim da part1
+
 27/03/2026 - Inicio da part2
+
 30/03/2026 - Fim da part2 A
 
 Onde parei - começar part2 B
