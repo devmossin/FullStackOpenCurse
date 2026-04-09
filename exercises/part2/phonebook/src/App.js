@@ -1,44 +1,39 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+
 import PersonForm from './components/PersonForm'
 import Filter from './components/Filter'
 import Persons from './components/Persons'
+import personsService from './services/PersonsService'
+import personService from './services/PersonsService'
 
 const App = () => {
-  const [persons, setPersons] = useState([
-    { key: 'Arto Hellas', name: 'Arto Hellas', number: '040-1234567' },
-    { key: 'Ada Lovelace', name: 'Ada Lovelace', number: '39-44-5323523'},
-    { key: 'Dan Abramov', name: 'Dan Abramov', number: '12-43-234345'},
-    { key: 'Mary Poppendieck', name: 'Mary Poppendieck', number: '39-23-6423122'}
-  ])
-
-  const [newName, setNewName] = useState('')
-  const [newNumber, setNewNumber] = useState('')
+  const [persons, setPersons] = useState([])
   const [newSearch, setNewSearch] = useState('')
 
-  const searchArray = newSearch === '' ? persons : persons.filter(person => person.name.includes(newSearch))
+  useEffect(() => {
+    personsService.getAll()
+    .then(initialPersons => {setPersons(initialPersons)})
+  }, [])
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    const nameObject = { key: newName, name: newName, number: newNumber }
-
-    const nameExists = persons.some(person => person.name === newName)
-
-    if (nameExists) {
-        alert(`${newName} is already added to phonebook`)
-        return
-    }
-
-    setPersons(persons.concat(nameObject))
-    setNewName('')
-    setNewNumber('')
+  const addPerson = newObject => {
+    personService.create(newObject)
+    .then(returnedPerson => {
+      setPersons(persons.concat(returnedPerson))
+    })
   }
+
+  const deletePerson = () => {
+    
+  }
+
+  const searchArray = newSearch === '' ? persons : persons.filter(person => person.name.includes(newSearch))
 
   return (
     <div>
       <h2>Phonebook</h2>
       <Filter newSearch={newSearch} setNewSearch={setNewSearch}/>
       
-      <PersonForm handleSubmit={handleSubmit} setNewName={setNewName} setNewNumber={setNewNumber} newName={newName} newNumber={newNumber}/>
+      <PersonForm persons={persons} addPerson={addPerson}/>
 
       <h2>Numbers</h2>
       <Persons newSearch={newSearch} persons={persons} searchArray={searchArray}/>
