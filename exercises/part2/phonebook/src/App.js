@@ -7,18 +7,44 @@ import personsService from './services/PersonsService'
 import personService from './services/PersonsService'
 
 const App = () => {
+  const errorStyle = {
+  color: 'red',
+  fontStyle: 'italic',
+  fontSize: 16
+  }
+
+  const sucessStyle = {
+  color: 'green',
+  fontStyle: 'italic',
+  fontSize: 16
+  }
+
   const [persons, setPersons] = useState([])
   const [newSearch, setNewSearch] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
+  const [addMessage, setAddMessage] = useState('')
 
   useEffect(() => {
     personsService.getAll()
     .then(initialPersons => {setPersons(initialPersons)})
+    .catch(error => {
+      setErrorMessage(`${error}`)
+      setTimeout(() => {
+          setErrorMessage(null)
+        }, 5000)
+    })
   }, [])
 
   const addPerson = newObject => {
     personService.create(newObject)
     .then(returnedPerson => {
       setPersons(persons.concat(returnedPerson))
+      setAddMessage(
+          `Added ${returnedPerson.name}`
+        )
+        setTimeout(() => {
+          setAddMessage(null)
+        }, 5000)
     })
   }
 
@@ -39,6 +65,8 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <div style={errorStyle}>{errorMessage}</div>
+      <div style={sucessStyle}>{addMessage}</div>
       <Filter newSearch={newSearch} setNewSearch={setNewSearch}/>
       
       <PersonForm persons={persons} addPerson={addPerson} updatePerson={updatePerson}/>
