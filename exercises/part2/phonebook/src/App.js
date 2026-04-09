@@ -22,8 +22,16 @@ const App = () => {
     })
   }
 
-  const deletePerson = () => {
-    
+  const deletePerson = (id) => {
+    personService.remove(id)
+    .then(setPersons(persons.filter(person => person.id !== id)))
+  }
+
+  const updatePerson = (id, updateObject) => {
+    personService.update(id, updateObject)
+    .then(returnedPerson => {
+      setPersons(persons.map(person => person.id !== id ? person : returnedPerson))
+    })
   }
 
   const searchArray = newSearch === '' ? persons : persons.filter(person => person.name.includes(newSearch))
@@ -33,10 +41,10 @@ const App = () => {
       <h2>Phonebook</h2>
       <Filter newSearch={newSearch} setNewSearch={setNewSearch}/>
       
-      <PersonForm persons={persons} addPerson={addPerson}/>
+      <PersonForm persons={persons} addPerson={addPerson} updatePerson={updatePerson}/>
 
       <h2>Numbers</h2>
-      <Persons newSearch={newSearch} persons={persons} searchArray={searchArray}/>
+      <Persons deletePerson={deletePerson} newSearch={newSearch} persons={persons} searchArray={searchArray}/>
       
     </div>
   )

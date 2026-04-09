@@ -9,14 +9,14 @@ const Persons = ({searchArray, newSearch, persons, deletePerson}) => {
         <div>
             {newSearch === '' 
                 ? persons.map(person => 
-                <p>
+                <p key={person.id}>
                     {person.name} {person.number}
-                    <button onClick={deleteClick(person.id, person.name)}></button>
+                    <button onClick={() => deleteClick(person.id, person.name)}>delete</button>
                 </p>)
                 : searchArray.map(person => 
-                <p>
+                <p key={person.id}>
                     {person.name} {person.number}
-                    <button onClick={deleteClick(person.id, person.name)}></button>
+                    <button onClick={() => deleteClick(person.id, person.name)}>delete</button>
                 </p>)
                 
             }
