@@ -14,7 +14,7 @@
 
 13/04/2026 - Inicio da part3
 
-Onde parei - Começar Recebendo dados - part3 A
+Onde parei - A aplicação na internet/fly.io - part3 B
 
 This repository is where I will store and track my exercises from the Full Stack Open course by the University of Helsinki.
 
