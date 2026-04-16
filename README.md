@@ -14,7 +14,7 @@
 
 13/04/2026 - Inicio da part3
 
-Onde parei - A aplicação na internet/fly.io - part3 B
+Onde parei - Build de produção frontend - part3 B
 
 This repository is where I will store and track my exercises from the Full Stack Open course by the University of Helsinki.
 
